@@ -3,7 +3,7 @@
 A modern and feature-rich e-commerce mobile application built with Flutter, following clean architecture principles and utilizing Firebase services.
 
 ## Splash page
-![alt text](assets\images\notes\splash.png)
+![alt text](assets/images/notes/splash.png)
 
 ## Table of Contents
 - [E-Commerce Flutter App](#e-commerce-flutter-app)
