@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_store/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:e_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:e_store/common/widgets/images/t_rounded_image.dart';
+import 'package:e_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:e_store/common/widgets/search_bar/search_bar.dart';
 import 'package:e_store/common/widgets/texts/section_heading.dart';
 import 'package:e_store/features/shop/screens/home/widgets/home_appbar.dart';
@@ -61,13 +62,21 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             // ---Body---
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(TSizes.defaultSpace),
-              child: TPromoSlider(
-                banners: [
-                  TImages.promoBanner1,
-                  TImages.promoBanner2,
-                  TImages.promoBanner3
+              child: Column(
+                children: [
+                  TPromoSlider(
+                    banners: [
+                      TImages.promoBanner1,
+                      TImages.promoBanner2,
+                      TImages.promoBanner3
+                    ],
+                  ),
+                  SizedBox(
+                    height: TSizes.spaceBtwSections,
+                  ),
+                  TProductCardVertical(),
                 ],
               ),
             ),

@@ -21,6 +21,7 @@ A modern and feature-rich e-commerce mobile application built with Flutter, foll
     - [Product Catalog Module (example)](#product-catalog-module-example)
   - [Notes](#notes)
     - [GetX](#getx)
+    - [Grid Layout](#grid-layout)
 
 ## Overview
 
@@ -301,3 +302,5 @@ class ProductRepository {
 
 ## Notes
 ### GetX
+
+### Grid Layout
