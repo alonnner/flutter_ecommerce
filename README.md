@@ -22,6 +22,9 @@ A modern and feature-rich e-commerce mobile application built with Flutter, foll
   - [Notes](#notes)
     - [GetX](#getx)
     - [Grid Layout](#grid-layout)
+      - [shortcut command ---\> gridViewB](#shortcut-command-----gridviewb)
+        - [It will generate below contents](#it-will-generate-below-contents)
+          - [Complete syntax](#complete-syntax)
 
 ## Overview
 
@@ -301,6 +304,31 @@ class ProductRepository {
 </br>
 
 ## Notes
+
 ### GetX
+<hr>
 
 ### Grid Layout
+#### shortcut command ---> gridViewB
+##### It will generate below contents
+![alt text](assets\images\notes\gridView_1.png)
+
+###### Complete syntax
+```dart
+//Main = vertical Cross = horizontal
+GridView.builder(
+        itemCount: 4, //how many items in total
+        shrinkWrap: true, // only take as much as space as its items need
+        physics: const NeverScrollableScrollPhysics(), // make it not scrollable
+        padding: EdgeInsets.zero, 
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // how many items placed horizontally
+                mainAxisSpacing: TSizes.gridViewSpacing,
+                crossAxisSpacing: TSizes.gridViewSpacing,
+                mainAxisExtent: 288,
+            ),
+        itemBuilder: (_, index) => TProductCardVertical()),
+```
+
+
