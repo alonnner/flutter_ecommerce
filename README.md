@@ -20,6 +20,10 @@ A modern and feature-rich e-commerce mobile application built with Flutter, foll
     - [🛍️ Product Catalog Module](#️-product-catalog-module)
   - [📝 Developer Notes](#-developer-notes)
     - [GetX State Management](#getx-state-management)
+      - [Step1](#step1)
+      - [Step2](#step2)
+      - [Step3](#step3)
+      - [Step4](#step4)
     - [Grid Layout Implementation](#grid-layout-implementation)
       - [Shortcut Command: `gridViewB`](#shortcut-command-gridviewb)
       - [Complete Syntax:](#complete-syntax)
@@ -304,7 +308,101 @@ class ProductRepository {
 
 ### GetX State Management
 
-GetX provides a comprehensive solution for state management, dependency injection, and navigation in Flutter applications. We use it throughout the app for consistent implementation patterns.
+Getx can be used in `Navigation`, `state management`
+
+#### Step1
+
+add "Get" before MaterialApp, turning it into GetMaterialApp
+
+```dart
+void main() => runApp(GetMaterialApp(home: Home()));
+```
+
+#### Step2
+
+Create my own controller file, ususally put it under controllers folder
+Place all `variables, methods and controllers` inside it
+
+```dart
+import 'package:e_store/features/authentication/screens/login/login.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+
+class OnBoardingController extends GetxController {
+  static OnBoardingController get instance => Get.find();
+
+  //variables
+  final pageController = PageController();
+  Rx<int> currentPageIndex = 0.obs; // Rx stands for Reacts
+  // makek it observable
+
+  //Update Current Index when Page Scroll
+  void updatePageIndicator(index) {
+    currentPageIndex.value = index;
+  }
+
+  //Jump to the specific dot selected page.
+  void dotNavigationClick(index) {
+    currentPageIndex.value = index;
+    pageController.jumpToPage(index);
+  }
+
+  //Update Current Index & Jump to the next page.
+  void nextPage() {
+    if (currentPageIndex.value == 2) {
+      Get.offAll(() => const LoginScreen());
+    } else {
+      int page = currentPageIndex.value + 1;
+      pageController.jumpToPage(page);
+    }
+  }
+
+  //Update Current Index & jump to the last page.
+  void skipPage() {
+    currentPageIndex.value = 2;
+    pageController.jumpToPage(2);
+  }
+}
+
+```
+
+#### Step3
+Instantiate controller when you are going to use it in views
+```dart
+final controller = Get.put(OnBoardingController());
+```
+
+#### Step4
+Now you are able to use all methods and variables in Controller by using controller.x
+```dart
+PageView(
+            controller: controller.pageController,
+            onPageChanged: controller.updatePageIndicator,
+            children: const [
+              OnBoardingPage(
+                image: TImages.onBoardingImage1,
+                title: TTexts.onBoardingSubTitle1,
+                subTitle: TTexts.onBoardingSubTitle1,
+              ),
+              OnBoardingPage(
+                image: TImages.onBoardingImage2,
+                title: TTexts.onBoardingSubTitle2,
+                subTitle: TTexts.onBoardingSubTitle2,
+              ),
+              OnBoardingPage(
+                image: TImages.onBoardingImage3,
+                title: TTexts.onBoardingSubTitle3,
+                subTitle: TTexts.onBoardingSubTitle3,
+              ),
+            ],
+          ),
+```
+
+
+
+
+
+
 
 ### Grid Layout Implementation
 
